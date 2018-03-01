@@ -1,6 +1,6 @@
 {
   "name": "Heroku Test",
-  "description": "A stress-free API for messing around with Heroku ",
+  "description": "A stress-free API for messing around with Heroku",
   "image": "heroku/python",
   "repository": "https://github.com/PFadel/heroku-test",
   "keywords": ["python"]
