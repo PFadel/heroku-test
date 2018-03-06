@@ -19,4 +19,14 @@ def hello():
     return jsonify({"message": "I'm cool and all"})
 
 
+@app.route('/echo', methods=["POST"])
+def post_stuff():
+    if not request.headers.get("cool_token"):
+        return jsonify({
+            "message": "You need to send me a cool token!"
+        }), 401
+
+    return jsonify({"echo": request.data})
+
+
 app.run(host='0.0.0.0', threaded=True, port=port)
