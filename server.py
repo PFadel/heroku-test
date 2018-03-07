@@ -26,7 +26,7 @@ def post_stuff():
             "message": "You need to send me a cool token!"
         }), 401
 
-    return jsonify({"echo": request.data})
+    return jsonify(request.data)
 
 
 app.run(host='0.0.0.0', threaded=True, port=port)
