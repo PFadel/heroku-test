@@ -120,7 +120,7 @@ def merchant_receivables_files():
             "message": "Missing obrigatory fields!"
         }), 400
 
-    return jsonify({"echo": request.json})
+    return jsonify({"echo": request.json}), 201
 
 @app.route('/api/v1/acquirers/<acquirerKey>/merchants/<affiliationCode>/configuration/bank-accounts', methods=["GET"])
 def bank_accounts(acquirerKey, affiliationCode):
