@@ -101,6 +101,15 @@ mock_banks_response = [
   }
 ]
 
+mock_financial_institutions = [
+    {
+        "id": 1,
+        "name": "Itaú",
+        "documentNumber": "11.111.111/1111-11",
+        "ispb": "12345678",
+        "numberCode": "123"
+    }
+]
 
 @app.route('/hello')
 def hello():
@@ -128,6 +137,10 @@ def mock_banks(acquirerKey, affiliationCode):
 @app.route('/credit-lock-contracts', methods=["GET"])
 def credit_lock_contracts():
     return jsonify(mock_credit_lock_contracts)
+
+@app.route('/financial-institutions', methods=["GET"])
+def financial_institutions():
+    return jsonify(mock_financial_institutions)
 
 
 app.run(host='0.0.0.0', threaded=True, port=port)
