@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import os
 
 from flask import Flask, jsonify, request
@@ -8,56 +10,43 @@ CORS(app)
 
 port = int(os.environ.get("PORT", 5000))
 
-mock_consolidated_forecast = [
+mock_credit_lock_contracts = [
   {
-    "Document": "DOC1",
-    "FinancialArrangements": [
+    "id": 1,
+    "status": "pendingApproval",
+    "company": "Stone",
+    "financialInstitutionControlNumber": "12fds651ds",
+    "financialInstitution": {
+      "id": 1,
+      "numberCode": "123",
+      "ispb": "12345678",
+      "name": "Itaú"
+    },
+    "merchantDocument": {
+      "number": "11111111111111",
+      "type": "cnpjRoot"
+    },
+    "bankAccount": {
+      "branch": "1234",
+      "accountNumber": "123456",
+      "accountVerificationNumber": "1"
+    },
+    "retentionAmountsPerArrangement": [
       {
-        "FinancialArrangement": {
-          "Id": 1,
-          "Description": "foo"
-        },
-        "Forecast": {
-          "TotalAmount": 1000,
-          "FreeAmount": 650,
-          "RetainableAmount": 350,
-          "IsPotentiallyRetainable": False,
-          "Affiliations": [
-            {
-              "AffiliationCode": "123123123",
-              "TotalAmount": 700
-            },
-            {
-              "AffiliationCode": "321321321",
-              "TotalAmount": 300
-            }
-          ]
-        }
+        "financialArrangement": "Visa",
+        "currentMaximumDailyRetentionAmount": 10.02,
+        "retentionAmountPerPeriod": [
+          {
+            "maximumDailyRetentionAmount": 11.00,
+            "validFrom": "2018-02-20",
+            "validTo": "2019-02-20"
+          }
+        ]
       }
-    ]
-  },
-  {
-    "Document": "DOC2",
-    "FinancialArrangements": [
-      {
-        "FinancialArrangement": {
-          "Id": 2,
-          "Description": "bar"
-        },
-        "Forecast": {
-          "TotalAmount": 5000,
-          "FreeAmount": 0,
-          "RetainableAmount": 5000,
-          "IsPotentiallyRetainable": True,
-          "Affiliations": [
-            {
-              "AffiliationCode": "123123123",
-              "TotalAmount": 700
-            }
-          ]
-        }
-      }
-    ]
+    ],
+    "validFrom": "2018-02-20",
+    "validTo": "2019-02-20",
+    "warrantyType": "None"
   }
 ]
 
@@ -136,9 +125,9 @@ def post_stuff():
 def mock_banks(acquirerKey, affiliationCode):
     return jsonify(mock_banks_response)
 
-@app.route('/api/v1/acquirers/<acquirerKey>/merchants/financial-entries/consolidated-forecast', methods=["GET"])
-def consolidated_forecast(acquirerKey):
-    return jsonify(mock_consolidated_forecast)
+@app.route('/credit-lock-contracts', methods=["GET"])
+def credit_lock_contracts():
+    return jsonify(mock_credit_lock_contracts)
 
 
 app.run(host='0.0.0.0', threaded=True, port=port)
