@@ -101,7 +101,6 @@ def hello():
 
     return jsonify({"message": "I'm cool and all"})
 
-
 @app.route('/echo', methods=["POST"])
 def post_stuff():
     if not request.headers.get("cool_token"):
@@ -110,6 +109,18 @@ def post_stuff():
         }), 401
 
     return jsonify({"echo": request.data})
+
+@app.route('/merchant-receivables-files', methods=["POST"])
+def merchant_receivables_files():
+    if not (request.json.get('documentNumber') and
+            request.json.get('financialInstitutionNumberCode') and
+            request.json.get('forecastReferenceDate')):
+
+        return jsonify({
+            "message": "Missing obrigatory fields!"
+        }), 400
+
+    return jsonify({"echo": request.json})
 
 @app.route('/api/v1/acquirers/<acquirerKey>/merchants/<affiliationCode>/configuration/bank-accounts', methods=["GET"])
 def bank_accounts(acquirerKey, affiliationCode):
