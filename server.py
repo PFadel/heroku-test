@@ -50,52 +50,33 @@ mock_credit_lock_contracts = [
   }
 ]
 
-mock_banks_response = [
+mock_bank_accounts = [
   {
-    "BankAccount": {
-      "Id": 123,
-      "AccountNumber": "01743",
-      "AccountNumberVerificationCode": "1",
-      "AffiliationCode": "string",
-      "AgencyNumber": "8873",
-      "AgencyNumberVerificationCode": None,
-      "BankId": 0,
-      "BankName": "string",
-      "CentralizedPayment": True,
-      "StatusId": 0,
-      "TypeId": 1,
-      "TypeName": "Conta Corrente"
-    },
-    "Mappings": [
+    "id": 123,
+    "accountNumber": "01743",
+    "accountNumberVerificationCode": "1",
+    "affiliationCode": "string",
+    "branchNumber": "8873",
+    "branchNumberVerificationCode": "1",
+    "bankNumber": 0,
+    "bankName": "string",
+    "ISPB": 60872504,
+    "centralizedPayment": True,
+    "statusId": 2,
+    "statusDescription": "Válida",
+    "typeId": 1,
+    "typeName": "Conta Corrente",
+    "holderDocumentIdentifier": "123",
+    "holderEntityType": 1,
+    "holderName": "oie",
+    "associatedWallets": [
       {
-        "WalletTypeId": 2,
-        "Locked": True
+        "walletTypeId": 2,
+        "isLocked": True
       },
       {
-        "WalletTypeId": 3,
-        "Locked": False
-      }
-    ]
-  },
-  {
-    "BankAccount": {
-      "Id": 321,
-      "AccountNumber": "01743",
-      "AccountNumberVerificationCode": "1",
-      "AffiliationCode": "string",
-      "AgencyNumber": "8873",
-      "AgencyNumberVerificationCode": None,
-      "BankId": 0,
-      "BankName": "string",
-      "CentralizedPayment": True,
-      "StatusId": 0,
-      "TypeId": 1,
-      "TypeName": "Conta Corrente"
-    },
-    "Mappings": [
-      {
-        "WalletTypeId": 5,
-        "Locked": False
+        "walletTypeId": 3,
+        "isLocked": False
       }
     ]
   }
@@ -131,8 +112,8 @@ def post_stuff():
     return jsonify({"echo": request.data})
 
 @app.route('/api/v1/acquirers/<acquirerKey>/merchants/<affiliationCode>/configuration/bank-accounts', methods=["GET"])
-def mock_banks(acquirerKey, affiliationCode):
-    return jsonify(mock_banks_response)
+def bank_accounts(acquirerKey, affiliationCode):
+    return jsonify(mock_bank_accounts)
 
 @app.route('/credit-lock-contracts', methods=["GET"])
 def credit_lock_contracts():
@@ -141,6 +122,5 @@ def credit_lock_contracts():
 @app.route('/financial-institutions', methods=["GET"])
 def financial_institutions():
     return jsonify(mock_financial_institutions)
-
 
 app.run(host='0.0.0.0', threaded=True, port=port)
