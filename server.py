@@ -12,40 +12,139 @@ port = int(os.environ.get("PORT", 5000))
 
 mock_credit_lock_contracts = [
   {
-    "id": 1,
-    "status": "pendingApproval",
+    "bankAccount": {
+      "accountNumber": "123456",
+      "accountVerificationNumber": "1",
+      "branch": "1234"
+    },
     "company": "Stone",
-    "financialInstitutionControlNumber": "12fds651ds",
     "financialInstitution": {
       "id": 1,
       "numberCode": "123",
-      "ispb": "12345678",
-      "name": "Itaú"
+      "ispb": "6847",
+      "name": "Banco Itaú S.A."
     },
+    "financialInstitutionControlNumber": "12fds651ds",
+    "id": 1,
     "merchantDocument": {
-      "number": "11111111111111",
-      "type": "cnpjRoot"
-    },
-    "bankAccount": {
-      "branch": "1234",
-      "accountNumber": "123456",
-      "accountVerificationNumber": "1"
+      "number": "12345678000101",
+      "type": "cnpj"
     },
     "retentionAmountsPerArrangement": [
       {
-        "financialArrangement": "Visa",
-        "currentMaximumDailyRetentionAmount": 10.02,
+        "currentMaximumDailyRetentionAmount": 0,
+        "financialArrangement": "Master Crédito",
         "retentionAmountPerPeriod": [
           {
-            "maximumDailyRetentionAmount": 11.00,
-            "validFrom": "2018-02-20",
-            "validTo": "2019-02-20"
+            "maximumDailyRetentionAmount": 10.02,
+            "validFrom": "2019-02-01",
+            "validTo": "2019-02-28"
+          },
+          {
+            "maximumDailyRetentionAmount": 10.04,
+            "validFrom": "2019-03-01",
+            "validTo": "2019-03-20"
+          },
+        ],
+      },
+      {
+        "financialArrangement": "Visa Crédito",
+        "retentionAmountPerPeriod": [
+          {
+            "maximumDailyRetentionAmount": 4.08,
+            "validFrom": "2019-02-22",
+            "validTo": "2019-03-04"
+          },
+        ],
+      },
+      {
+        "financialArrangement": "Elo Crédito",
+        "retentionAmountPerPeriod": [
+          {
+            "maximumDailyRetentionAmount": 6.72,
+            "validFrom": "2019-02-23",
+            "validTo": "2019-02-28"
+          },
+        ],
+      },
+    ],
+    "status": "inEffect",
+    "validFrom": "2019-02-01",
+    "validTo": "2019-03-20",
+    "warrantyType": "None"
+  },
+  {
+    "bankAccount": {
+      "accountNumber": "567890",
+      "accountVerificationNumber": "8",
+      "branch": "3454"
+    },
+    "company": "Stone",
+    "financialInstitution": {
+      "id": 1,
+      "numberCode": "345",
+      "ispb": "01234567",
+      "name": "Banco Triângulo"
+    },
+    "financialInstitutionControlNumber": "4328525037",
+    "id": 2,
+    "merchantDocument": {
+      "number": "12345678000101",
+      "type": "cnpj"
+    },
+    "retentionAmountsPerArrangement": [
+      {
+        "currentMaximumDailyRetentionAmount": 0,
+        "financialArrangement": "Visa Crédito",
+        "retentionAmountPerPeriod": [
+          {
+            "maximumDailyRetentionAmount": 11,
+            "validFrom": "2019-02-24",
+            "validTo": "2019-02-28"
+          },
+        ],
+      },
+    ],
+    "status": "ended",
+    "validFrom": "2019-02-01",
+    "validTo": "2019-02-28",
+    "warrantyType": "None"
+  },
+  {
+    "bankAccount": {
+      "accountNumber": "567890",
+      "accountVerificationNumber": "8",
+      "branch": "3454"
+    },
+    "company": "Stone",
+    "financialInstitution": {
+      "id": 1,
+      "numberCode": "345",
+      "ispb": "01234567",
+      "name": "Banco Triângulo"
+    },
+    "financialInstitutionControlNumber": "4328525037",
+    "id": 3,
+    "merchantDocument": {
+      "number": "12345678",
+      "type": "cnjpRoot"
+    },
+    "retentionAmountsPerArrangement": [
+      {
+        "currentMaximumDailyRetentionAmount": 0,
+        "financialArrangement": "Visa Crédito",
+        "retentionAmountPerPeriod": [
+          {
+            "maximumDailyRetentionAmount": 11,
+            "validFrom": "2019-02-24",
+            "validTo": "2019-02-28"
           }
         ]
       }
     ],
-    "validFrom": "2018-02-20",
-    "validTo": "2019-02-20",
+    "status": "inEffect",
+    "validFrom": "2019-01-01",
+    "validTo": "2019-02-28",
     "warrantyType": "None"
   }
 ]
