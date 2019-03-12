@@ -212,8 +212,7 @@ def post_stuff():
 @app.route('/merchant-receivables-files', methods=["POST"])
 def merchant_receivables_files():
     if not (request.json.get('documentNumber') and
-            request.json.get('financialInstitutionNumberCode') and
-            request.json.get('forecastReferenceDate')):
+            request.json.get('financialInstitutionNumberCode')):
 
         return jsonify({
             "message": "Missing obrigatory fields!"
